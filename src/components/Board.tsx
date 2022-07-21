@@ -19,6 +19,7 @@ const Board = () => {
     setOpenTiles([]);
     setAttempts(0);
     setMatched(0);
+    setPrev(null);
   };
 
   // reveal tile
