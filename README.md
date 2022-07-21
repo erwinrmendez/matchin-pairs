@@ -1,8 +1,8 @@
 # Matching Pairs Game
 
-Match pairs game built using [Vite](https://vitejs.dev/) with `react-ts` template.
+Match pairs game built using [Vite](https://vitejs.dev/) with `react-ts` template. Using Tailwind CSS for styling.
 
-![]()
+![](./screenshot.png)
 
 Try the live version [here]().
 
