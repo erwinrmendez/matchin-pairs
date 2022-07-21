@@ -31,7 +31,6 @@ const animals: Animal[] = [
 ];
 
 const Tile: FC<{ index: number }> = ({ index }) => {
-  console.log(index);
   return (
     <div className="w-12 h-12 sm:w-20 sm:h-20 flex items-center justify-center bg-slate-900 rounded border border-slate-700">
       <img

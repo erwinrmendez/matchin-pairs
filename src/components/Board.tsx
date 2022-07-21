@@ -1,7 +1,13 @@
 import { FC } from "react";
+import { shuffle } from "../utils/shuffle";
 import Tile from "./Tile";
 
 const Board = () => {
+  const n = 10; // total matches
+  const numbers = [...Array(n * 2).keys()].map((n) => (n >= 10 ? n - 10 : n)); // generates array of numbers from 0 to 9, repeated twice
+  const matches = shuffle(numbers); // shuffles array of numbers
+
+  console.log(numbers, matches);
   return (
     <main>
       <div className="flex justify-center my-4 gap-4">
@@ -9,8 +15,8 @@ const Board = () => {
         <ScoreBoard title="attempts" score={0} />
       </div>
       <div className="border border-slate-700 p-2 gap-2 sm:p-4 grid grid-cols-5 sm:gap-4 rounded">
-        {[...Array(20).keys()].map((index) => (
-          <Tile key={index} index={index >= 10 ? index - 10 : index} />
+        {matches.map((match, i) => (
+          <Tile key={i} index={match} />
         ))}
       </div>
       <div className="flex py-4 w-full justify-center">
