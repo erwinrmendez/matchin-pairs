@@ -52,14 +52,14 @@ const Tile = ({
 
   return (
     <div
-      className="w-12 h-12 sm:w-20 sm:h-20 flex items-center justify-center bg-slate-900 rounded border border-slate-700 cursor-pointer hover:bg-slate-900/70 transition-all ease-in-out"
+      className="flex items-center justify-center bg-slate-900 rounded border border-slate-700 cursor-pointer hover:bg-slate-900/70 transition-all ease-in-out"
       style={{ perspective: "1000px" }}
       onClick={() => revealTile(tileIndex)}
     >
       <div
         className={`${
           animateMatched ? "animate-matched" : ""
-        } rounded relative transition-all duration-300 w-full h-full`}
+        } rounded relative transition-all duration-300 w-12 h-12 sm:w-20 sm:h-20`}
         style={{ transformStyle: "preserve-3d", transform }}
       >
         {show && (
