@@ -59,14 +59,14 @@ const Tile = ({
       <div
         className={`${
           animateMatched ? "animate-matched" : ""
-        } bg-slate-300 rounded relative transition-all duration-500`}
+        } rounded relative transition-all duration-300 w-full h-full`}
         style={{ transformStyle: "preserve-3d", transform }}
       >
         {show && (
           <img
             src={animals[match].image}
             alt={animals[match].name}
-            className="rounded p-3"
+            className={`${animateMatched ? "" : "bg-slate-300"} rounded p-3`}
             style={{ transform: "rotateY(180deg)" }}
           />
         )}
