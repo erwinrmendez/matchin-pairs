@@ -1,5 +1,3 @@
-import { FC } from "react";
-
 // import all animals
 import dog from "../images/001-dog.png";
 import cat from "../images/002-cat.png";
@@ -30,14 +28,26 @@ const animals: Animal[] = [
   { name: "dolphin", image: dolphin },
 ];
 
-const Tile: FC<{ index: number }> = ({ index }) => {
+type TileProps = {
+  tileIndex: number;
+  match: number;
+  show: boolean;
+  revealTile: (curr: number) => void;
+};
+
+const Tile = ({ tileIndex, match, show, revealTile }: TileProps) => {
   return (
-    <div className="w-12 h-12 sm:w-20 sm:h-20 flex items-center justify-center bg-slate-900 rounded border border-slate-700">
-      <img
-        src={animals[index].image}
-        alt={animals[index].name}
-        className="bg-slate-100 p-1 rounded"
-      />
+    <div
+      className="w-12 h-12 sm:w-20 sm:h-20 flex items-center justify-center bg-slate-900 rounded border border-slate-700 cursor-pointer"
+      onClick={() => revealTile(tileIndex)}
+    >
+      {show && (
+        <img
+          src={animals[match].image}
+          alt={animals[match].name}
+          className="bg-slate-100 p-1 rounded"
+        />
+      )}
     </div>
   );
 };
