@@ -4,7 +4,7 @@ Match pairs game built using [Vite](https://vitejs.dev/) with `react-ts` templat
 
 ![](./screenshot.png)
 
-Try the live version [here]().
+Try the live version [here](https://erwinrmendez.github.io/matching-pairs).
 
 ## Let's chat!
 
