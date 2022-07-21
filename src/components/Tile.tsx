@@ -1,4 +1,5 @@
 // import all animals
+import { useEffect, useState } from "react";
 import dog from "../images/001-dog.png";
 import cat from "../images/002-cat.png";
 import duck from "../images/003-duck.png";
@@ -33,21 +34,43 @@ type TileProps = {
   match: number;
   show: boolean;
   revealTile: (curr: number) => void;
+  animateMatched: boolean;
 };
 
-const Tile = ({ tileIndex, match, show, revealTile }: TileProps) => {
+const Tile = ({
+  tileIndex,
+  match,
+  show,
+  revealTile,
+  animateMatched,
+}: TileProps) => {
+  const [transform, setTransform] = useState("rotateY(0deg)");
+
+  useEffect(() => {
+    show ? setTransform("rotateY(180deg)") : setTransform("rotateY(0deg)");
+  }, [show]);
+
   return (
     <div
-      className="w-12 h-12 sm:w-20 sm:h-20 flex items-center justify-center bg-slate-900 rounded border border-slate-700 cursor-pointer"
+      className="w-12 h-12 sm:w-20 sm:h-20 flex items-center justify-center bg-slate-900 rounded border border-slate-700 cursor-pointer hover:bg-slate-900/70 transition-all ease-in-out"
+      style={{ perspective: "1000px" }}
       onClick={() => revealTile(tileIndex)}
     >
-      {show && (
-        <img
-          src={animals[match].image}
-          alt={animals[match].name}
-          className="bg-slate-100 p-1 rounded"
-        />
-      )}
+      <div
+        className={`${
+          animateMatched ? "animate-matched" : ""
+        } bg-slate-300 rounded relative transition-all duration-500`}
+        style={{ transformStyle: "preserve-3d", transform }}
+      >
+        {show && (
+          <img
+            src={animals[match].image}
+            alt={animals[match].name}
+            className="rounded p-3"
+            style={{ transform: "rotateY(180deg)" }}
+          />
+        )}
+      </div>
     </div>
   );
 };
