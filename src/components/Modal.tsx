@@ -15,7 +15,7 @@ const Modal = ({ totalAttempts, reset }: ModalProps) => {
 
   return (
     <div
-      className={`absolute z-10 bg-slate-900/70 flex items-center justify-center w-full h-full`}
+      className="absolute z-10 bg-slate-900/70 flex items-center justify-center w-full h-full overflow-hidden top-0 right-0"
       aria-hidden="true"
     >
       <article

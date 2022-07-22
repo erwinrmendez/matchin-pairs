@@ -105,7 +105,7 @@ const Board = () => {
           </button>
         </div>
       </main>
-      {!isFinished && <Modal totalAttempts={attempts} reset={resetGame} />}
+      {isFinished && <Modal totalAttempts={attempts} reset={resetGame} />}
     </>
   );
 };
