@@ -30,6 +30,7 @@ const Board = () => {
     // if clicking on same tile, hide it
     if (curr === prev) {
       hideTiles(curr);
+      setPrev(null);
       return;
     }
 
