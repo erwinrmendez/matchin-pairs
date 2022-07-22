@@ -31,28 +31,25 @@ const Board = () => {
     // if clicking on same tile, hide it
     if (curr === prev) {
       hideTiles(curr);
-      setPrev(null);
-      return;
-    }
-
-    // show tile
-    const tiles = [...board];
-    tiles[curr].show = true;
-    setBoard(tiles);
-
-    // if not previous value, then set previous as current and return
-    if (prev === null) {
-      setPrev(curr);
-      return;
-    }
-
-    // add animation if there is a match, else hide tiles
-    if (tiles[prev].index === tiles[curr].index) {
-      setMatched(matched + 1);
-      setOpenTiles([...openTiles, prev, curr]);
-      // TODO: add animation
     } else {
-      setTimeout(() => hideTiles(curr, prev), 750);
+      // show tile
+      const tiles = [...board];
+      tiles[curr].show = true;
+      setBoard(tiles);
+
+      // if not previous value, then set previous as current and return
+      if (prev === null) {
+        setPrev(curr);
+        return;
+      }
+
+      // add animation if there is a match, else hide tiles
+      if (tiles[prev].index === tiles[curr].index) {
+        setMatched(matched + 1);
+        setOpenTiles([...openTiles, prev, curr]);
+      } else {
+        setTimeout(() => hideTiles(curr, prev), 750);
+      }
     }
 
     setAttempts(attempts + 1);
@@ -108,7 +105,7 @@ const Board = () => {
           </button>
         </div>
       </main>
-      {isFinished && <Modal totalAttempts={attempts} reset={resetGame} />}
+      {!isFinished && <Modal totalAttempts={attempts} reset={resetGame} />}
     </>
   );
 };
