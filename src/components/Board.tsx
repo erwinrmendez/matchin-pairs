@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { getMatches } from "../utils/getMatches";
 import { shuffle } from "../utils/shuffle";
+import Modal from "./Modal";
 import Tile from "./Tile";
 
 const Board = () => {
@@ -70,38 +71,45 @@ const Board = () => {
   };
 
   return (
-    <main>
-      <div className="flex justify-center my-4 gap-4">
-        <ScoreBoard
-          title="matched"
-          score={`${matched}/10`}
-          isFinished={isFinished}
-        />
-        <ScoreBoard title="attempts" score={attempts} isFinished={isFinished} />
-      </div>
-      <div className="border border-slate-700 p-2 gap-2 sm:p-4 grid grid-cols-5 sm:gap-4 rounded">
-        {board.map((match, i) => (
-          <Tile
-            key={i}
-            tileIndex={i}
-            match={match.index}
-            animateMatched={openTiles.includes(i)}
-            show={match.show}
-            revealTile={revealTile}
+    <>
+      <main>
+        <div className="flex justify-center my-4 gap-4">
+          <ScoreBoard
+            title="matched"
+            score={`${matched}/10`}
+            isFinished={isFinished}
           />
-        ))}
-      </div>
-      <div className="flex py-4 w-full justify-center">
-        <button
-          className={`${
-            isFinished ? "bg-slate-600" : "bg-slate-700"
-          } px-4 py-2 text-white text-center rounded w-40 border border-slate-600 transition-colors duration-500`}
-          onClick={resetGame}
-        >
-          Reset Game
-        </button>
-      </div>
-    </main>
+          <ScoreBoard
+            title="attempts"
+            score={attempts}
+            isFinished={isFinished}
+          />
+        </div>
+        <div className="border border-slate-700 p-2 gap-2 sm:p-4 grid grid-cols-5 sm:gap-4 rounded">
+          {board.map((match, i) => (
+            <Tile
+              key={i}
+              tileIndex={i}
+              match={match.index}
+              animateMatched={openTiles.includes(i)}
+              show={match.show}
+              revealTile={revealTile}
+            />
+          ))}
+        </div>
+        <div className="flex py-4 w-full justify-center">
+          <button
+            className={`${
+              isFinished ? "bg-slate-600" : "bg-slate-700"
+            } px-4 py-2 text-white text-center rounded w-40 border border-slate-600 transition-colors duration-500`}
+            onClick={resetGame}
+          >
+            Reset Game
+          </button>
+        </div>
+      </main>
+      {isFinished && <Modal totalAttempts={attempts} reset={resetGame} />}
+    </>
   );
 };
 
